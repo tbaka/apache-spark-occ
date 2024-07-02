@@ -1,0 +1,62 @@
+---
+# roles/common/tasks
+# common tasks for all linodes
+- name: apt update
+  apt:
+    update_cache: yes
+
+- name: apt upgrade
+  apt:
+    upgrade: full
+
+- name: install basic packages
+  apt:
+    pkg:
+    - htop
+    - rsync
+    - strace
+    - figlet
+    - software-properties-common
+    - gnupg2
+    - ssl-cert
+    - python3-pip
+    - python3-venv
+    - fail2ban
+    - ufw
+    state: present
+
+- name: fail2ban jail
+  copy:
+    src: /etc/fail2ban/fail2ban.conf
+    dest: /etc/fail2ban/fail2ban.local
+    remote_src: yes
+  notify: start fail2ban
+
+# set_hostname
+- name: setting up hostname
+  import_role:
+    name: hostname
+
+# dns creation
+- name: Create DNS A records
+  import_role:
+    name: create_dns_record
+  when: 
+    - token_password is defined
+    - domain is defined
+    - "'spark_master' in group_names"
+
+- name: secure ssh configs
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "{{ item.search }}"
+    line: "{{ item.replace }}"
+  loop:
+    - { search: '^\#?PermitRootLogin (yes|no)', replace: 'PermitRootLogin without-password' }
+    - { search: '^\#?PasswordAuthentication (yes|no)', replace: 'PasswordAuthentication no' }
+    - { search: '^\#?PubkeyAuthentication (yes|no)', replace: 'PubkeyAuthentication yes' }
+  notify: restart ssh
+
+# ufw rules 
+- name: apply ufw rules
+  import_tasks: ufw_rules.yml
