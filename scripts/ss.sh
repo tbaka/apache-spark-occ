@@ -9,7 +9,6 @@ fi
 # <UDF name="token_password" label="Your Linode API token" />
 # <UDF name="cluster_name" label="Cluster Name" />
 # <UDF name="sudo_username" label="The limited sudo user to be created in the cluster" />
-# <UDF name="add_ssh_keys" label="Add Account SSH Keys to All Nodes?" oneof="yes,no" default="yes" />
 # <UDF name="cluster_size" label="Apache Spark cluster size" default="3" oneof="3" />
 # <UDF name="soa_email_address" label="Email address for Let's Encrypt Certificates" />
 # <UDF name="spark_user" label="User to login to Spark WebUI" />
