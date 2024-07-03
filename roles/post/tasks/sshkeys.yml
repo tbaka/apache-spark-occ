@@ -15,15 +15,6 @@
   register: first_line_key
   when: "'spark_master' in group_names"
 
-# - name: Append first line of master authorized_keys to workers
-#   lineinfile:
-#     path: "{{ item }}/.ssh/authorized_keys"
-#     line: "{{ first_line_key.stdout }}"
-#     create: yes
-#     state: present
-#   with_items: "{{ groups['spark_workers'] }}"
-#   when: "'spark_master' in group_names"
-
 - name: Append master's key to workers' authorized_keys
   lineinfile:
     path: "/root/.ssh/authorized_keys"
