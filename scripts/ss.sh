@@ -23,7 +23,7 @@ fi
 export DEBIAN_FRONTEND=noninteractive
 
 # git repo
-export GIT_REPO="https://github.com/josephcardillo/apache-spark-occ.git"
+export GIT_REPO="https://github.com/josephcardillo/marketplace-apache-spark-occ.git"
 export WORK_DIR="/tmp/spark-occ"
 export RUN_DIR="/usr/local/bin/run"
 export UUID=$(uuidgen | awk -F - '{print $1}')

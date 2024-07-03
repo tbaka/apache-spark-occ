@@ -88,7 +88,7 @@ EOF
 
 function deploy {
   ansible-playbook provision.yml
-  ansible-playbook -i hosts -vv site.yml --extra-vars "root_password=${ROOT_PASS} add_keys_prompt=${ADD_SSH_KEYS}"
+  ansible-playbook -i hosts -v site.yml --extra-vars "root_password=${ROOT_PASS} add_keys_prompt=${ADD_SSH_KEYS}"
 }
 
 ## cleanup ##
