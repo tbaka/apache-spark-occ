@@ -8,7 +8,7 @@
   apt:
     name: python3-certbot-nginx
     state: present
-
+  
 # - name: set certbot plugin
 #   set_fact:
 #     certbot_plugin: nginx
