@@ -170,11 +170,6 @@
   import_tasks: nginx.yml
   when: "'spark_master' in group_names"
 
-# - name: test certificate renewal
-#   command: certbot renew --nginx --dry-run
-#   register: renew_test
-#   changed_when: false
-
 - name: set up SSL certificate renewal cronjob
   cron:
     name: "Renew Let's Encrypt SSL certificates"
