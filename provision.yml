@@ -5,9 +5,6 @@
     - group_vars/spark/vars
     - group_vars/spark/secret_vars
 
-  vars:
-    count: '{{ server_count }}'
-
   tasks:
     - name: creating Spark servers
       linode.cloud.instance:
@@ -24,14 +21,14 @@
         tags: '{{ linode_tags }}'
         state: present
       register: linode
-      with_sequence: count='{{ count - 1 }}'
+      with_sequence: '{{ server_count - 1 }}'
 
     - name: Get info about an instance by label
       linode.cloud.instance_info:
         api_token: '{{ token }}'
-        label: '{{ instance_prefix }}{{ item | int + 1 }}-{{ uuid }}'
+        label: '{{ instance_prefix }}{{ item | int }}-{{ uuid }}'
       register: info
-      with_sequence: count='{{ count }}'
+      with_sequence: '{{ server_count }}'
 
     - name: update group_vars with server variables
       blockinfile:
@@ -41,7 +38,7 @@
           #jinja2: trim_blocks:False
           spark_data:
             server:
-              {%- for count in range(count | int) %}
+              {%- for count in range(server_count | int) %}
               - spark-server-{{ count }}:
                 instance:
                   hostname: {{ info.results[count].instance.label | replace('_', '-') }}
