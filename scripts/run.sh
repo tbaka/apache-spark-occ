@@ -66,7 +66,7 @@ function build {
 
   soa_email_address: ${SOA_EMAIL_ADDRESS}
   spark_user: ${SPARK_USER}
-  server_count: ${CLUSTER_SIZE}
+  cluster_size: ${CLUSTER_SIZE}
 EOF
   if [[ -n ${TOKEN_PASSWORD} ]]; then
     echo "token_password: ${TOKEN_PASSWORD}" >> ${VARS_PATH};

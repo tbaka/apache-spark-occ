@@ -8,7 +8,7 @@
     - group_vars/spark/secret_vars
   
   vars:
-    count: '{{ cluster_size - 1 }}'
+    count: '{{ server_count - 1 }}'
 
   tasks:
     - name: deleting linodes except provisioner
