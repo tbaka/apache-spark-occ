@@ -6,7 +6,7 @@
     - group_vars/spark/secret_vars
 
   vars:
-    count: '{{ cluster_size - 1 }}'
+    count: '{{ (cluster_size | int) - 1 }}'
   
   tasks:
     - name: creating Spark servers
@@ -31,7 +31,7 @@
         api_token: '{{ token }}'
         label: '{{ instance_prefix }}{{ item | int }}-{{ uuid }}'
       register: info
-      with_sequence: count='{{ cluster_size }}'
+      with_sequence: count='{{ count }}'
 
     - name: update group_vars with server variables
       blockinfile:
