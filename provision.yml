@@ -6,17 +6,10 @@
     - group_vars/spark/secret_vars
 
   vars:
-    cluster_size_int: "{{ (cluster_size | int) }}"
-    count: "{{ cluster_size_int - 1 }}"
+    count: "{{ cluster_size | int }}"
   
   tasks:
-    - name: Debug count
-      debug:
-        msg: 
-          - "cluster_size: {{ cluster_size }}"
-          - "cluster_size_int: {{ cluster_size_int }}"
-          - "count: {{ count }}"
-  
+
     - name: creating Spark servers
       linode.cloud.instance:
         label: '{{ instance_prefix }}{{ item | int + 1 }}-{{ uuid }}'
