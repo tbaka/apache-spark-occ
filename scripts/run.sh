@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-DEBUG="NO"
+DEBUG="YES"
 if [ "${DEBUG}" == "NO" ]; then
   trap "cleanup $? $LINENO" EXIT
 fi
@@ -86,7 +86,7 @@ EOF
 
 function deploy {
   ansible-playbook provision.yml
-  ansible-playbook -i hosts -v site.yml --extra-vars "root_password=${ROOT_PASS}"
+  ansible-playbook -i hosts -vv site.yml --extra-vars "root_password=${ROOT_PASS}"
 }
 
 ## cleanup ##

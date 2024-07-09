@@ -9,6 +9,13 @@
     count: '{{ (cluster_size | int) - 1 }}'
   
   tasks:
+    - name: Debug count
+    debug:
+      msg: 
+        - "cluster_size: {{ cluster_size }}"
+        - "count: {{ count }}"
+        - "total nodes (count + 1): {{ count + 1 }}"
+  
     - name: creating Spark servers
       linode.cloud.instance:
         label: '{{ instance_prefix }}{{ item | int + 1 }}-{{ uuid }}'
