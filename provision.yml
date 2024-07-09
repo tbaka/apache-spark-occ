@@ -30,7 +30,7 @@
     - name: Get info about an instance by label
       linode.cloud.instance_info:
         api_token: '{{ token }}'
-        label: '{{ instance_prefix }}{{ item | int }}-{{ uuid }}'
+        label: '{{ instance_prefix }}{{ item | int + 1 }}-{{ uuid }}'
       register: info
       with_sequence: count='{{ count }}'
 
