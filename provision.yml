@@ -14,7 +14,7 @@
       debug:
         msg: 
           - "cluster_size: {{ cluster_size }}"
-          - "cluster_size_int: {{ (cluster_size_int }}"
+          - "cluster_size_int: {{ (cluster_size_int) }}"
           - "count: {{ count }}"
   
     - name: creating Spark servers
