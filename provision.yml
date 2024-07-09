@@ -6,7 +6,7 @@
     - group_vars/spark/secret_vars
 
   vars:
-    count: "{{ cluster_size | int }}"
+    count: '{{ cluster_size - 1 }}'
   
   tasks:
 
@@ -25,7 +25,7 @@
         tags: '{{ linode_tags }}'
         state: present
       register: linode
-      with_sequence: count='{{ count - 1 }}'
+      with_sequence: count='{{ count }}'
 
     - name: Get info about an instance by label
       linode.cloud.instance_info:
