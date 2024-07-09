@@ -34,7 +34,7 @@
 - name: Append master's key to workers' authorized_keys
   lineinfile:
     path: "/root/.ssh/authorized_keys"
-    line: "{{ hostvars[groups['spark_master'][0]['first_line_key']['stdout'] }}"
+    line: "{{ hostvars[groups['spark_master'][0]]['first_line_key']['stdout'] }}"
     state: present
   delegate_to: "{{ item }}"
   loop: "{{ groups['spark_workers'] }}"
