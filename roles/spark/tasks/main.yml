@@ -217,7 +217,12 @@
   run_once: true
 
 
+# - name: start spark workers
+#   command: "/opt/spark/sbin/start-workers.sh spark://{{ spark_master_priv1 }}:7077"
+#   delegate_to: "{{ groups['spark_master'][0] }}"
+#   run_once: true
+
 - name: start spark workers
-  command: "/opt/spark/sbin/start-workers.sh spark://{{ spark_master_priv1 }}:7077"
-  delegate_to: "{{ groups['spark_master'][0] }}"
-  run_once: true
+   command: "/opt/spark/sbin/start-workers.sh spark://{{ spark_data.server[0].instance.ip_priv1 }}:7077"
+   delegate_to: "{{ groups['spark_master'][0] }}"
+   run_once: true
