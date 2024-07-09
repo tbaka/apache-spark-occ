@@ -103,7 +103,8 @@
     src: spark-env-worker.sh.j2
     dest: "/opt/spark/conf/spark-env.sh"
     mode: '0755'
-  delegate_to: "{{ groups['spark_workers'] }}"
+  delegate_to: "{{ item }}"
+  loop: "{{ groups['spark_workers'] }}"
 
 - name: configure spark-defaults.conf on master
   template:
@@ -118,7 +119,8 @@
     src: spark-defaults-worker.conf.j2
     dest: "/opt/spark/conf/spark-defaults.conf"
     mode: '0755'
-  delegate_to: "{{ groups['spark_workers'] }}"
+  delegate_to: "{{ item }}"
+  loop: "{{ groups['spark_workers'] }}"
 
 - name: populate spark workers file
   template:
