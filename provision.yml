@@ -1,3 +1,4 @@
+---
 - name: Configuring environment
   hosts: localhost
   connection: local

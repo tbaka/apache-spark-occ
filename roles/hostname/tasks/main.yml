@@ -1,8 +1,6 @@
 ---
 # roles/hostname/tasks/main.yml
-
 # The _domain variable functions as a FQDN to handle deployments using a subdomain, top level domain and www subdomain, or default rDNS. 
-
 # When domain is defined
 - name: set dns fact for subdomain
   set_fact:
