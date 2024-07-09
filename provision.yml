@@ -13,6 +13,7 @@
     debug:
       msg: 
         - "cluster_size: {{ cluster_size }}"
+        - "cluster_size int: {{ (cluster_size | int) }}"
         - "count: {{ count }}"
         - "total nodes (count + 1): {{ count + 1 }}"
   
