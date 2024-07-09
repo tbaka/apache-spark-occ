@@ -31,7 +31,7 @@
     path: /root/.ssh/config
     block: |
       #jinja2: trim_blocks:False
-      {%- for count in range(server_count - 1)%}
+      {%- for count in range(cluster_size - 1)%}
       Host {{ spark_data.server.spark-server-[count + 1].instance.ip_pub1 }}
           User root
           IdentityFile /root/.ssh/id_rsa_spark 
